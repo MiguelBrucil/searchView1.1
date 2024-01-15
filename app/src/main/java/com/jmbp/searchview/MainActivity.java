@@ -2,6 +2,7 @@ package com.jmbp.searchview;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -24,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(Lista);
 
         SearchView searchView = findViewById(R.id.idsearch);
-
+//es un objeto para manejar los eventos
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                return false;//envia la consulta de busqueda
             }
-
+//implementa el metodocuando realiza la busqueda
             @Override
             public boolean onQueryTextChange(String newText) {
                 Lista.getFilter().filter(newText);
@@ -38,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedName = Lista.getItem(position);
-            Toast.makeText(MainActivity.this, "Nombre seleccionado: " + selectedName, Toast.LENGTH_SHORT).show();
-        });
+
     }
 }
